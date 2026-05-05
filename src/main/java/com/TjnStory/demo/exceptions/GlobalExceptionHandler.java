@@ -1,6 +1,6 @@
 package com.TjnStory.demo.exceptions;
 
-import com.TjnStory.demo.DTO.StandardErrorDTO;
+import com.TjnStory.demo.dto.StandardErrorDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

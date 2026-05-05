@@ -1,9 +1,9 @@
 package com.TjnStory.demo.service;
 
-import com.TjnStory.demo.DTO.CategoryCreateDTO;
-import com.TjnStory.demo.DTO.CategoryResponseDTO;
-import com.TjnStory.demo.DTO.CategoryUpdateParentDTO;
-import com.TjnStory.demo.DTO.CategoryUpdateNameDTO;
+import com.TjnStory.demo.dto.CategoryCreateDTO;
+import com.TjnStory.demo.dto.CategoryResponseDTO;
+import com.TjnStory.demo.dto.CategoryUpdateParentDTO;
+import com.TjnStory.demo.dto.CategoryUpdateNameDTO;
 import com.TjnStory.demo.entities.Category;
 import com.TjnStory.demo.exceptions.CategoryAlreadyExistsException;
 import com.TjnStory.demo.exceptions.CategoryNotDeletableException;

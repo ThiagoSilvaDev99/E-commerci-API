@@ -1,8 +1,8 @@
 package com.TjnStory.demo.service.mapper;
 
-import com.TjnStory.demo.DTO.CategoryResponseDTO;
-import com.TjnStory.demo.DTO.ProductCreateDTO;
-import com.TjnStory.demo.DTO.ProductResponseDTO;
+import com.TjnStory.demo.dto.CategoryResponseDTO;
+import com.TjnStory.demo.dto.ProductCreateDTO;
+import com.TjnStory.demo.dto.ProductResponseDTO;
 import com.TjnStory.demo.entities.Category;
 import com.TjnStory.demo.entities.Product;
 import org.springframework.stereotype.Component;

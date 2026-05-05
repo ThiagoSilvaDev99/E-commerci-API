@@ -1,9 +1,9 @@
 package com.TjnStory.demo.service;
 
-import com.TjnStory.demo.DTO.ProductUpdateDTO;
+import com.TjnStory.demo.dto.ProductUpdateDTO;
 import com.TjnStory.demo.exceptions.*;
-import com.TjnStory.demo.DTO.ProductCreateDTO;
-import com.TjnStory.demo.DTO.ProductResponseDTO;
+import com.TjnStory.demo.dto.ProductCreateDTO;
+import com.TjnStory.demo.dto.ProductResponseDTO;
 import com.TjnStory.demo.entities.Category;
 import com.TjnStory.demo.entities.Product;
 import com.TjnStory.demo.repository.CategoryRepository;

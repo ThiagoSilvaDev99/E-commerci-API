@@ -1,4 +1,4 @@
-package com.TjnStory.demo.DTO;
+package com.TjnStory.demo.dto;
 
 import java.math.BigDecimal;
 import java.util.UUID;

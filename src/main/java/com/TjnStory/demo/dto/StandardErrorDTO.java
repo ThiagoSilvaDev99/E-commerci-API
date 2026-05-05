@@ -1,4 +1,4 @@
-package com.TjnStory.demo.DTO;
+package com.TjnStory.demo.dto;
 
 import java.time.Instant;
 

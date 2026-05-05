@@ -1,8 +1,8 @@
 package com.TjnStory.demo.controller;
 
-import com.TjnStory.demo.DTO.ProductCreateDTO;
-import com.TjnStory.demo.DTO.ProductResponseDTO;
-import com.TjnStory.demo.DTO.ProductUpdateDTO;
+import com.TjnStory.demo.dto.ProductCreateDTO;
+import com.TjnStory.demo.dto.ProductResponseDTO;
+import com.TjnStory.demo.dto.ProductUpdateDTO;
 import com.TjnStory.demo.service.ProductService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
