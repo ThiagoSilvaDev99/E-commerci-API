@@ -1,14 +1,17 @@
-package com.TjnStory.demo.service;
+package com.TjnStory.demo.product.service;
 
-import com.TjnStory.demo.dto.ProductUpdateDTO;
-import com.TjnStory.demo.exceptions.*;
-import com.TjnStory.demo.dto.ProductCreateDTO;
-import com.TjnStory.demo.dto.ProductResponseDTO;
-import com.TjnStory.demo.entities.Category;
-import com.TjnStory.demo.entities.Product;
-import com.TjnStory.demo.repository.CategoryRepository;
-import com.TjnStory.demo.repository.ProductRepository;
-import com.TjnStory.demo.service.mapper.ProductMapper;
+import com.TjnStory.demo.category.entity.Category;
+import com.TjnStory.demo.product.mapper.ProductMapper;
+import com.TjnStory.demo.product.repository.ProductRepository;
+import com.TjnStory.demo.product.dto.ProductCreateDTO;
+import com.TjnStory.demo.product.dto.ProductResponseDTO;
+import com.TjnStory.demo.product.dto.ProductUpdateDTO;
+import com.TjnStory.demo.product.entity.Product;
+import com.TjnStory.demo.category.repository.CategoryRepository;
+import com.TjnStory.demo.shared.exception.CategoryNotFoundException;
+import com.TjnStory.demo.shared.exception.ProductAlreadyExistsException;
+import com.TjnStory.demo.shared.exception.ProductNotFoundException;
+import com.TjnStory.demo.shared.util.NameNormalizer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +31,7 @@ public class ProductService {
     public List<ProductResponseDTO> findAll() {
         List<Product> products = productRepository.findByActiveTrue();
 
-        return products.stream().map(produto -> mapper.convertToDTO(produto)).toList();
+        return products.stream().map(mapper::convertToDTO).toList();
 
     }
 
@@ -43,7 +46,7 @@ public class ProductService {
 
         Category category = findCategoryById(dto.categoryId());
 
-        boolean exitsProduct = productRepository.existsByNameIgnoreCase(dto.name());
+        boolean exitsProduct = productRepository.existsByNameIgnoreCase(NameNormalizer.normalize(dto.name()));
         if(exitsProduct){
             throw new ProductAlreadyExistsException("Product already exists");
         }
@@ -59,7 +62,6 @@ public class ProductService {
         Product product = findProductById(id);
 
         product.changePrice(dto.price());
-        //productRepository.save(product);
         return mapper.convertToDTO(product);
     }
 
@@ -67,7 +69,6 @@ public class ProductService {
     public void delete(UUID id){
         Product product = findProductById(id);
         product.deactivate();
-        //productRepository.save(product);
     }
 
     private Product findProductById(UUID id){

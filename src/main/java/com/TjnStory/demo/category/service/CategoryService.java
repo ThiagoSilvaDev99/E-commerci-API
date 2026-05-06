@@ -1,16 +1,17 @@
-package com.TjnStory.demo.service;
+package com.TjnStory.demo.category.service;
 
-import com.TjnStory.demo.dto.CategoryCreateDTO;
-import com.TjnStory.demo.dto.CategoryResponseDTO;
-import com.TjnStory.demo.dto.CategoryUpdateParentDTO;
-import com.TjnStory.demo.dto.CategoryUpdateNameDTO;
-import com.TjnStory.demo.entities.Category;
-import com.TjnStory.demo.exceptions.CategoryAlreadyExistsException;
-import com.TjnStory.demo.exceptions.CategoryNotDeletableException;
-import com.TjnStory.demo.exceptions.CategoryNotFoundException;
-import com.TjnStory.demo.repository.CategoryRepository;
-import com.TjnStory.demo.repository.ProductRepository;
-import com.TjnStory.demo.service.mapper.CategoryMapper;
+import com.TjnStory.demo.category.mapper.CategoryMapper;
+import com.TjnStory.demo.category.repository.CategoryRepository;
+import com.TjnStory.demo.category.dto.CategoryCreateDTO;
+import com.TjnStory.demo.category.dto.CategoryResponseDTO;
+import com.TjnStory.demo.category.dto.CategoryUpdateNameDTO;
+import com.TjnStory.demo.category.dto.CategoryUpdateParentDTO;
+import com.TjnStory.demo.category.entity.Category;
+import com.TjnStory.demo.shared.exception.CategoryAlreadyExistsException;
+import com.TjnStory.demo.shared.exception.CategoryNotDeletableException;
+import com.TjnStory.demo.shared.exception.CategoryNotFoundException;
+import com.TjnStory.demo.product.repository.ProductRepository;
+import com.TjnStory.demo.shared.util.NameNormalizer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +43,8 @@ public class CategoryService {
 
     @Transactional
     public CategoryResponseDTO createCategory(CategoryCreateDTO dto){
-        findExistingCategory(dto.name());
+
+        findExistingCategory(NameNormalizer.normalize(dto.name()));
 
         Category parent = null;
         if(dto.parentId() != null){

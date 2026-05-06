@@ -1,6 +1,7 @@
-package com.TjnStory.demo.entities;
+package com.TjnStory.demo.category.entity;
 
-import com.TjnStory.demo.exceptions.CategoryValidationException;
+import com.TjnStory.demo.shared.exception.CategoryValidationException;
+import com.TjnStory.demo.shared.util.NameNormalizer;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -58,14 +59,15 @@ public class Category {
             throw new CategoryValidationException("Category name is null or blank");
         }
 
-        return new Category(name, parent);
+        return new Category(NameNormalizer.normalize(name), parent);
     }
 
     public void changeName(String newName){
         if(name == null || name.isBlank()){
             throw new CategoryValidationException("Category's new name is null or blank");
         }
-        this.name = newName;
+
+        this.name = NameNormalizer.normalize(newName);
     }
 
     public void changeParent(Category newParent) {

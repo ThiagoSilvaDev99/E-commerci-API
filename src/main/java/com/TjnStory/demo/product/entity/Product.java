@@ -1,6 +1,8 @@
-package com.TjnStory.demo.entities;
+package com.TjnStory.demo.product.entity;
 
-import com.TjnStory.demo.exceptions.ProductValidationException;
+import com.TjnStory.demo.category.entity.Category;
+import com.TjnStory.demo.shared.exception.ProductValidationException;
+import com.TjnStory.demo.shared.util.NameNormalizer;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -56,10 +58,6 @@ public class Product {
 
     @CreationTimestamp
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @Column(name = "active",  nullable = false)
@@ -79,7 +77,7 @@ public class Product {
             throw new ProductValidationException("The price must be higher than the cost price.");
         }
 
-        return new Product(name, category, costPrice, price, stockQuantity);
+        return new Product(NameNormalizer.normalize(name), category, costPrice, price, stockQuantity);
     }
 
     public void changePrice(BigDecimal newPrice) {
