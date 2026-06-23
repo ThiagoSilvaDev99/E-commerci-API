@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(error);
     }
 
-    @ExceptionHandler({ProductValidationException.class,CategoryValidationException.class})
+    @ExceptionHandler({ProductValidationException.class,CategoryValidationException.class,UserValidationException.class})
     public ResponseEntity<StandardErrorDTO> handleBusinessRules(RuntimeException ex, HttpServletRequest request) {
 
         HttpStatus status = HttpStatus.UNPROCESSABLE_CONTENT;
